@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HSC - Sherouk Gym Tracker</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="icon" type="image/png" href="images/hscLogo.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen p-4">
+
+  <main
+  class="bg-gray-800 bg-opacity-90 rounded-l shadow-xl max-w-5xl w-full p-6 md:p-8 text-center text-gray-200 font-inter
+         backdrop-blur-md mx-4 flex flex-col md:flex-row gap-6 md:gap-10"
+>
+
+    <!-- Left Panel -->
+    <section class="flex-1 flex flex-col items-center text-sm md:text-base">
+      <!-- Logo -->
+      <img 
+        src="images/hscLogo.png" 
+        alt="HSC Logo" 
+        class="mb-6 w-24 md:w-32 h-auto object-contain rounded-lg shadow-md"
+        loading="lazy"
+      />
+
+      <!-- Heading -->
+      <h1 class="text-xl md:text-2xl font-semibold mb-5">Number of People in the Gym</h1>
+
+      <!-- Count -->
+      <p id="countDisplay" class="text-blue-400 font-bold text-5xl md:text-7xl mb-2"></p>
+
+      <!-- Crowd Rating -->
+      <p id="crowdRating" class="text-lg md:text-xl font-semibold mb-6"></p>
+
+      <!-- Timestamp -->
+      <p id="timestampDisplay" class="italic mb-8 text-gray-400"></p>
+
+      <!-- Refresh Button -->
+      <button
+        id="refreshBtn"
+        class="w-full max-w-xs py-2 md:py-3 rounded-lg bg-blue-600 hover:bg-blue-700 transition text-white font-semibold mb-6 shadow-lg"
+        aria-label="Refresh count"
+      >
+        Refresh Now
+      </button>
+
+      <!-- Status Message -->
+      <p
+        id="statusMsg"
+        class="text-green-400 text-xs md:text-sm min-h-[1.5rem]"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        Auto-refreshes every 20 seconds
+      </p>
+    </section>
+
+    <!-- Right Panel -->
+    <section class="flex-1 max-w-md text-left text-xs sm:text-sm md:text-base">
+
+      <!-- Crowd Level Legend -->
+      <section aria-label="Crowd level legend" class="mb-8 text-gray-300">
+        <h2 class="font-semibold mb-2 text-gray-200 text-sm md:text-base">Crowd Levels</h2>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <li class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded bg-green-400"></span> Empty (0–5)
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded bg-lime-400"></span> Considered Empty (6–15)
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded bg-yellow-400"></span> Moderate (16–30)
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded bg-orange-500"></span> Crowded (31–45)
+          </li>
+          <li class="flex items-center gap-2 col-span-1 sm:col-span-2">
+            <span class="w-5 h-5 rounded bg-red-500"></span> Very Crowded (45+)
+          </li>
+        </ul>
+      </section>
+
+      <!-- Opening Hours -->
+      <section class="mb-8 text-gray-300">
+        <h2 class="font-semibold mb-3 text-gray-200 text-sm md:text-base">Opening Hours</h2>
+        <ul class="space-y-3">
+          <li class="flex flex-col gap-0 break-words">
+            <div class="flex items-center gap-2 text-blue-400">
+              <!-- Clock Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span class="font-semibold">Everyday:</span>
+            </div>
+            <div class="pl-6 text-gray-400">7:00 AM - 11:00 PM</div>
+          </li>
+          <li class="flex flex-col gap-0 break-words">
+            <div class="flex items-center gap-2 text-pink-400">
+              <!-- Female Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5c-1.795 0-3.28 1.553-3.28 3.47a3.368 3.368 0 003.28 3.471 3.367 3.367 0 003.279-3.47c0-1.918-1.484-3.47-3.279-3.47zM9.72 12a3.367 3.367 0 00-2.636 3.112c0 1.658 2.636 5.388 2.636 5.388s2.635-3.73 2.635-5.388A3.367 3.367 0 009.72 12z" />
+              </svg>
+              <span class="font-semibold">Monday & Wednesday:</span>
+            </div>
+            <div class="pl-6 text-gray-400">12:00 PM - 3:00 PM <span class="font-semibold text-pink-400">Ladies Only</span></div>
+          </li>
+          <li class="flex flex-col gap-0 break-words">
+            <div class="flex items-center gap-2 text-pink-400">
+              <!-- Female Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5c-1.795 0-3.28 1.553-3.28 3.47a3.368 3.368 0 003.28 3.471 3.367 3.367 0 003.279-3.47c0-1.918-1.484-3.47-3.279-3.47zM9.72 12a3.367 3.367 0 00-2.636 3.112c0 1.658 2.636 5.388 2.636 5.388s2.635-3.73 2.635-5.388A3.367 3.367 0 009.72 12z" />
+              </svg>
+              <span class="font-semibold">Tuesday:</span>
+            </div>
+            <div class="pl-6 text-gray-400">6:00 PM - 8:00 PM <span class="font-semibold text-pink-400">Ladies Only</span></div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Gym Preview Video -->
+      <section class="rounded-lg overflow-hidden shadow-lg">
+        <video
+          id="gymPreviewVideo"
+          src="images/preview.mp4"
+          class="w-full rounded-lg"
+          muted
+          controls="false"
+          preload="metadata"
+          playsinline
+          style="cursor: pointer;"
+        ></video>
+        <p class="text-center text-gray-400 text-xs mt-1 select-none">Tap video to play/pause</p>
+      </section>
+
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
