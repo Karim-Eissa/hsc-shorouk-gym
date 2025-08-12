@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/count";
+const API_URL = "https://gkpg6otc8l.execute-api.eu-north-1.amazonaws.com/count";
 
 const countDisplay = document.getElementById("countDisplay");
 const crowdRating = document.getElementById("crowdRating");
