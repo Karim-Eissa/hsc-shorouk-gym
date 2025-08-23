@@ -40,6 +40,28 @@ async function fetchCount() {
     statusMsg.textContent = "Fetching latest data...";
     statusMsg.style.visibility = "visible";
 
+    // Get current hour
+    const hour = new Date().getHours();
+
+    // If time is between 11 PM - 6 AM → closed
+    if (hour >= 23 || hour < 6) {
+      countDisplay.textContent = "0";
+      countDisplay.className = "font-bold text-7xl mb-4 font-inter text-gray-400";
+
+      crowdRating.textContent = "Closed";
+      crowdRating.className = "text-xl font-semibold mb-6 font-inter text-gray-400";
+
+      timestampDisplay.textContent = `Opens at 6 AM`;
+
+      statusMsg.textContent = "Gym is currently closed";
+      statusMsg.classList.remove("text-green-400");
+      statusMsg.classList.add("text-red-400");
+      statusMsg.style.visibility = "visible";
+
+      return; // stop here, don’t fetch API
+    }
+
+    // Otherwise fetch live count
     const res = await fetch(API_URL);
     if (!res.ok) throw new Error("Failed to fetch count");
 
@@ -64,9 +86,7 @@ async function fetchCount() {
     statusMsg.classList.add("text-green-400");
     statusMsg.style.visibility = "visible";
 
-    // Clear any previous timers so it doesn't hide prematurely
     if (fetchCount.hideTimeout) clearTimeout(fetchCount.hideTimeout);
-
     fetchCount.hideTimeout = setTimeout(() => {
       statusMsg.style.visibility = "hidden";
     }, 3000);
@@ -81,7 +101,6 @@ async function fetchCount() {
     if (fetchCount.hideTimeout) clearTimeout(fetchCount.hideTimeout);
   }
 }
-
 
 refreshBtn.addEventListener("click", fetchCount);
 
