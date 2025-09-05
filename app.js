@@ -17,7 +17,7 @@ timestampDisplay.parentNode.insertBefore(ladiesOnlyBanner, timestampDisplay);
 // -----------------------------
 // NEW: toggle for maintenance
 // -----------------------------
-const IS_MAINTENANCE = true; 
+const IS_MAINTENANCE = false; 
 
 // Ensure video is muted
 video.muted = true;
