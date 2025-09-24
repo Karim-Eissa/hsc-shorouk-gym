@@ -17,7 +17,7 @@ timestampDisplay.parentNode.insertBefore(ladiesOnlyBanner, timestampDisplay);
 // -----------------------------
 // NEW: toggle for maintenance
 // -----------------------------
-const IS_MAINTENANCE = false; 
+const IS_MAINTENANCE = true; 
 
 // Ensure video is muted
 video.muted = true;
@@ -173,3 +173,4 @@ async function fetchCount() {
 refreshBtn.addEventListener("click", fetchCount);
 setInterval(fetchCount, 20000);
 fetchCount();
+
