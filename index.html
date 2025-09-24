@@ -30,12 +30,15 @@
 
 <body class="flex items-center justify-center min-h-screen p-4">
 
-  <main
-    style="background-color: rgba(31, 41, 55, 0.7);"
-    class="relative backdrop-blur-md rounded-l shadow-xl w-full max-w-none md:max-w-5xl p-6 md:p-8 text-center text-gray-200 font-inter
-           mx-0 md:mx-4 flex flex-col md:flex-row gap-6 md:gap-10"
-  >
+ <main
+  style="background-color: rgba(31, 41, 55, 0.7);"
+  class="relative backdrop-blur-md rounded-l shadow-xl w-full max-w-none md:max-w-5xl 
+         p-6 md:p-8 text-center text-gray-200 font-inter mx-0 md:mx-4 space-y-10"
+>
 
+  <!-- Flex container for Left + Right Panels -->
+  <div class="flex flex-col md:flex-row gap-6 md:gap-10">
+    
     <!-- Left Panel -->
     <section class="flex-1 flex flex-col items-center text-sm md:text-base">
       <!-- Logo -->
@@ -61,7 +64,8 @@
       <!-- Refresh Button -->
       <button
         id="refreshBtn"
-        class="w-full max-w-xs py-2 md:py-3 rounded-lg bg-blue-600 hover:bg-blue-700 transition text-white font-semibold mb-6 shadow-lg"
+        class="w-full max-w-xs py-2 md:py-3 rounded-lg bg-blue-600 hover:bg-blue-700 
+               transition text-white font-semibold mb-6 shadow-lg"
         aria-label="Refresh count"
       >
         Refresh Now
@@ -69,7 +73,7 @@
       <p id="ladiesNotice" class="hidden"></p>
       <p class="text-gray-400 text-xs md:text-sm min-h-[1.5rem]" aria-live="polite" aria-atomic="true">
         Auto-refreshes every 20 seconds
-    </p>
+      </p>
       <!-- Status Message -->
       <p
         id="statusMsg"
@@ -157,9 +161,26 @@
         ></video>
         <p class="text-center text-gray-400 text-xs mt-1 select-none">Tap video to play/pause</p>
       </section>
-
     </section>
-  </main>
+  </div>
+
+  <!-- Memorial Section (below both panels) -->
+ <section class="w-full text-center">
+  <div class="flex flex-col items-center space-y-4">
+    <img 
+      src="images/mostafa.jpeg" 
+      alt="Mostafa Ahmed" 
+      class="w-72 md:w-96 max-w-full object-cover rounded-lg shadow-xl border-2 border-gray-400"
+      loading="lazy"
+    />
+    <p class="text-gray-200 italic text-base md:text-lg">
+      In memory of <span class="font-semibold">Mostafa Ahmed</span><br />
+      <span class="text-gray-400">2001 - October 6, 2024</span>
+    </p>
+  </div>
+</section>
+
+</main>
 
   <script src="app.js"></script>
 </body>
